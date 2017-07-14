@@ -1,0 +1,34 @@
+@CHARSET "ISO-8859-1";
+
+html,
+body {
+	
+   height:100%;
+/*    background-color: #F3EFEC; */
+   
+}
+#container {
+   min-height:100%;
+   position:relative;
+}
+#header {
+   
+}
+#body {
+   
+   padding-bottom:60px;   /* Height of the footer */
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   
+  
+}
+#footer p {
+	color: white;
+	font-size: 15px;
+	padding: 20px 0px 10px 120px;
+}
+

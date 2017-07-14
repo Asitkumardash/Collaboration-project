@@ -1,0 +1,47 @@
+<div class="row">
+      <div class="col s12 m12">
+        <div class="card-panel grey lighten-4">
+        	<div class="center-align">
+	            <p class="loginHeadergrey">Approve Blogs</p>
+	        </div>
+        
+		  		<!-- Search method -->
+				<div class="row">
+				    <form class="col s12">
+				    
+				      <div class="row">
+				        <div class="input-field col s6">
+				          <input id="first_name" type="text" class="validate" ng-model="searchBlog1.btitle">
+				          <label for="first_name">Search Blog</label>
+				        </div>
+				        
+				      </div>
+				     </form>
+				 </div>
+		  <table>
+			    <thead class="striped">
+			      <tr>
+			        <th class="col m9">Blog</th>
+			        <th class="col m3">Action</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="blog in blogCtrl.blognalist | filter : searchBlog1">
+			        <td class="col m9">
+						<p class="nalistTitle"><a href="#/blog/{{blog.blogid}}">{{blog.btitle}}</a></p>
+						<p class="nalistUser" >Published by <a href="#/frprofile/{{blog.user.userid}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{blog.user.fname}} {{blog.user.lname}}</a> on {{blog.bdate | date : 'MMM d, y h:mm:ss a'}} | {{blog.blikes}} Likes | {{blog.bcomments}} comments</p>
+						<p class="nalistText">{{blog.bdata | limitTo: 200}}...  <a href="#/blog/{{blog.blogid}}"> read complete blog</a></p>
+
+					</td>
+					
+					<td class="col m3"><a ng-click="blogCtrl.blogAppr(blog.blogid);" class="approvebtnB btn light-green darken-4"><i class="fa fa-check" aria-hidden="true"></i></a>&nbsp;
+					<a ng-click="blogCtrl.blogDisAppr(blog.blogid);" class="disapprovbtnB btn red darken-4"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+			      </tr>
+			     
+			    </tbody>
+			  </table>
+		  </div>
+		 </div>
+		</div>
+		  
+	

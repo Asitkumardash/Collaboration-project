@@ -1,0 +1,78 @@
+<div class="row" ng-init="blogCtrl.viewBlog()">
+	
+      <div class="col s12 m12">
+        <div class="card-panel grey lighten-4">
+        
+			<p class="singleTitle center">{{blogCtrl.singleBlog.btitle}}</p>
+			<p class="singleDetails center">Published by <a href="#/frprofile/{{blogCtrl.singleBlog.user.userid}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{blogCtrl.singleBlog.user.fname}} {{blogCtrl.singleBlog.user.lname}}</a> on {{blogCtrl.singleBlog.bdate | date : 'MMM d, y h:mm:ss a'}} | {{blogCtrl.singleBlog.blikes}} Likes | {{blogCtrl.singleBlog.bcomments}} comments </p>
+			<div ng-if=" (blogCtrl.singleBlog.isApproved == 'N') ">
+				<marquee bgcolor="pink" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">Your blog has not been approved yet.</marquee>
+			</div>
+			<div ng-if=" (blogCtrl.singleBlog.isApproved == 'B') ">
+				<marquee bgcolor="#ffd600" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">Your blog has been blocked by admin.</marquee>
+			</div>
+			<div ng-if=" blogCtrl.singleBlog.user.userid == user.userid ">
+		  	
+		  		<a href="#/blog/edit/{{blogCtrl.singleBlog.blogid}}" class="btn orange darken-3">Edit</a>
+		  		<a ng-click="blogCtrl.deleteABlog();" class="btn red darken-3">Delete</a>
+		  	</div>
+		  	
+		  	<div ng-if=" (blogCtrl.singleBlog.user.userid != user.userid) && (user.role == 'Admin') ">
+		  	
+		  		
+		  		<a ng-click="blogCtrl.blockABlog();" class="btn yellow darken-3">Block</a>
+		  	</div>
+			
+			<p class="likebtn center"><a ng-click="blogCtrl.likeblog(blogCtrl.singleBlog.blogid);"><i class="fa fa-star" aria-hidden="true"></i> Like<span class="glyphicon glyphicon-thumbs-up"></span></a>
+			<p class="singleText">{{blogCtrl.singleBlog.bdata}}</p>
+			
+			<div class="row">
+			<form id="newbcomm" name="newbcomm" ng-submit="blogCtrl.addBlogComm()" class="col m12">
+				<input type="hidden" ng-model="blogCtrl.bcomm.blogcommid" />
+
+				<div class="row">
+					<div class="input-field col s12">
+						<textarea id="fdata" class="materialize-textarea" data-length="1000" ng-model="blogCtrl.bcomm.commdata"></textarea>
+						<label for="fdata">Leave a comment</label>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Submit button will come here -->
+					<div class="col m3">
+						<div class="row">
+							<button type="submit" class="waves-effect waves-light btn-large orange darken-3">Post</button>
+						</div>
+					</div>
+
+				</div>
+
+			</form></div>
+			
+			
+			
+  					  <div class="center-align ">
+			            <h4>Comments</h4>
+			          </div>
+	<div ng-repeat="blogcomm in blogCtrl.blogCommentlist">
+		
+	<div class="row">
+      <div class="col s12 m12 commentbox">
+        <!-- <div class="card-panel"> -->
+		
+		  <p class="commentUser">Posted by <a href="#/frprofile/{{blogcomm.user.userid}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{blogcomm.user.fname}} {{blogcomm.user.lname}}</a>  on {{blogcomm.commdate | date : 'MMM yyyy,dd | hh: mm: ss a'}}</p>
+		  
+		  <p class="commentText">{{blogcomm.commdata}}</p>
+	  	
+	  	
+	  	<!-- </div> -->
+	  </div>
+	</div>
+	
+</div>
+			
+			
+		</div>
+	</div>
+			
+	
+</div>

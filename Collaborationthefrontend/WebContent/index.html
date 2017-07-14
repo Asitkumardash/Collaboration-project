@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	<title>title</title>
+
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+	
+	<link rel="stylesheet" href="assets/css/mystyle.css" >
+	<link rel="stylesheet" href="assets/css/myStyle1.css" >
+	<link rel="stylesheet" href="assets/css/myStyle2.css" >
+	<link rel="stylesheet" href="assets/css/myStyle3.css" >
+	<link rel="stylesheet" href="assets/css/myStyle4.css" >
+	<link rel="stylesheet" href="assets/css/myStyle5.css" >
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+  	<script type="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
+	
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js"></script> -->
+
+<script type="text/javascript" src="app/app.module.js"></script>
+<script type="text/javascript" src="app/app.route.js"></script>
+
+<script type="text/javascript" src="app/components/blog/blogFactory.js"></script>
+<script type="text/javascript" src="app/components/blog/blogController.js"></script>
+
+<script type="text/javascript" src="app/components/blog/blogCommentFactory.js"></script>
+<script type="text/javascript" src="app/components/blog/blogCommentController.js"></script>
+
+<script type="text/javascript" src="app/components/userstuff/userFactory.js"></script>
+<script type="text/javascript" src="app/components/userstuff/userController.js"></script>
+
+<script type="text/javascript" src="app/components/forum/forumFactory.js"></script>
+<script type="text/javascript" src="app/components/forum/forumController.js"></script>
+
+<script type="text/javascript" src="app/components/forum/fpostFactory.js"></script>
+
+<script type="text/javascript" src="app/components/job/jobFactory.js"></script>
+<script type="text/javascript" src="app/components/job/jobController.js"></script>
+
+<script type="text/javascript" src="app/components/friend/friendFactory.js"></script>
+<script type="text/javascript" src="app/components/friend/friendController.js"></script>
+
+<script type="text/javascript" src="app/components/adminevent/admineventFactory.js"></script>
+<script type="text/javascript" src="app/components/adminevent/admineventController.js"></script>
+
+<script type="text/javascript" src="app/components/authpages/loginFactory.js"></script>
+<script type="text/javascript" src="app/components/authpages/loginController.js"></script>
+
+<script type="text/javascript" src="app/components/chat/chatFactory.js"></script>
+<script type="text/javascript" src="app/components/chat/chatController.js"></script>
+
+	<script type="text/javascript" src="assets/js/myApp.js"></script>
+
+
+
+
+      
+</head>
+<body ng-app="lifeinvader">
+
+
+<div id="container">
+   <header>
+   		
+   		<div ng-if="!authenticated">
+   			<div class="navbar-fixed">
+   				<nav>
+				    <div class="nav-wrapper purple accent-2">
+				      <a href="#/home" class="brand-logo nextlogo">MAXGEN</a>
+				      <ul id="nav-mobile" class="right hide-on-med-and-down">
+				        <li></li>
+				        <li></li>
+				        
+				      </ul>
+				    </div>
+				  </nav>
+   			</div>
+   		</div>
+   		
+   		<div ng-if="authenticated">
+		<div class="navbar-fixed">
+				
+				<!-- Dropdown Structure Forum -->
+				<ul id="dropdown1" class="dropdown-content">
+				  <li><a href="#/forum/new">Add new forum</a></li>
+				  <li><a href="#/forum/list">All forums</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#/forum/mylist">Created forums</a></li>
+				  <li><a href="#/fmember/myForumlist">Joined forums</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#/fmember/nalist">Approve members</a></li>
+				</ul>
+				
+				<!-- Dropdown Structure Job -->
+				<ul id="dropdownJob" class="dropdown-content">
+				  <li><a href="#/job/new">Add new job</a></li>
+				  <li><a href="#/job/list">joblist</a></li>
+				  
+				</ul>
+				
+				<!-- Dropdown Structure Blog -->
+				<ul id="dropdownBlog" class="dropdown-content">
+				  <li><a href="#/blog/new">Add new blog</a></li>
+				  <li><a href="#/blog/userbloglist">My blogs</a></li>
+				  <li><a href="#/blog/list">All blogs</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#/blog/nalist">Approve blog</a></li>
+				</ul>
+				
+				<!-- Dropdown Structure Event -->
+				<ul id="dropdownEvent" class="dropdown-content">
+				 <li><a href="#/adminevent/new">Create new event</a></li>
+				 <li><a href="#/adminevent/list">All events</a></li>
+				  
+				</ul>
+				
+				<!-- Dropdown Structure User -->
+				<ul id="dropdownUser" class="dropdown-content">
+				 <li><a href="#/user/aplist">All approved users</a></li>
+				 <li><a href="#/user/list">User list</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#/user/nalist">Approve users</a></li>
+				  <li><a href="#/user/changeRole">Change role</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#/user/rejectedlist">Rejected users list</a></li>
+				  
+				</ul>
+				
+				<!-- Dropdown Structure Friend -->
+				<ul id="dropdownFriend" class="dropdown-content">
+			     <li><a href="#/friend/myfrlist">My friends</a></li>
+				  <li class="divider"></li>
+				 <li><a href="#/friend/mylist">Requests sent</a></li>
+				 <li><a href="#/friend/req/rcvd">Reqests recieved</a></li>
+				  <li class="divider"></li>
+				 <li><a href="#/friend/notFrndlist">Not friends</a></li>
+				  
+				</ul>
+				
+				<!-- User stuff -->
+				<!-- Dropdown Structure User forum -->
+				<ul id="dropdownUserForum" class="dropdown-content">
+				  <li><a href="#/forum/list">All forums</a></li> 
+				  <li class="divider"></li>
+				  <li><a href="#/fmember/myForumlist">Joined forums</a></li>
+				</ul>
+				
+				<!-- Dropdown Structure User x user -->
+				<ul id="dropdownUseruser" class="dropdown-content">
+				  <li><a href="#/user/aplist">All users</a></li>
+				  <li class="divider"></li>
+				  <li><a href="">three</a></li>
+				</ul>
+				
+				<!-- Dropdown Structure User blog -->
+				<ul id="dropdownUserBlog" class="dropdown-content">
+				  <li><a href="#/blog/new">Create new blog</a></li>
+				  <li><a href="#/blog/list">All blogs</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#/blog/userbloglist">My blogs</a></li>
+				</ul>
+				
+				<!-- Dropdown Structure User Job -->
+				<ul id="dropdownUserJob" class="dropdown-content">
+				  <li><a href="#/job/list">All Jobs</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#/job/appliedlist">Applied Jobs</a></li>
+				</ul>
+				
+				<!-- Dropdown Structure User Event -->
+				<ul id="dropdownUserEvent" class="dropdown-content">
+				  <li><a href="#/adminevent/list">All Events</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#/event/participatedList">Participated Events</a></li>
+				</ul>
+				
+				<!-- Dropdown Structure user Friend -->
+				<ul id="dropdownUserFriend" class="dropdown-content">
+			     <li><a href="#/friend/myfrlist">My friends</a></li>
+				  <li class="divider"></li>
+				 <li><a href="#/friend/mylist">Requests sent</a></li>
+				 <li><a href="#/friend/req/rcvd">Reqests recieved</a></li>
+				  <li class="divider"></li>
+				 <li><a href="#/friend/notFrndlist">Not friends</a></li>
+				  
+				</ul>
+				
+				<nav>
+				<div class="nav-wrapper purple accent-2">
+					<a href="#/profile/{{user.userid}}" class="brand-logo nextlogo">MAXGEN</a>
+				 	
+
+				 	
+				 		<ul class="right hide-on-med-and-down" ng-if="user.role == 'User'">
+				 		
+				 		<li><a href="#/profile/{{user.userid}}">Profile</a></li>
+				 			
+				 			<!-- Dropdown Trigger user friend -->
+      <li><a class="dropdown-UserFriend" href="" data-activates="dropdownUserFriend">Friend<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+				 			<!-- Dropdown Trigger user forum -->
+      <li><a class="dropdown-UserForum" href="" data-activates="dropdownUserForum">Forum<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+				 			<!-- Dropdown Trigger user x User -->
+      <!-- <li><a class="dropdown-Useruser" href="" data-activates="dropdownUseruser">User<i class="material-icons right">arrow_drop_down</i></a></li>
+     -->
+				 			<!-- Dropdown Trigger user Blog -->
+      <li><a class="dropdown-UserBlog" href="" data-activates="dropdownUserBlog">Blog<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+				 			
+				 			<!-- Dropdown Trigger user Job -->
+      <li><a class="dropdown-UserJob" href="" data-activates="dropdownUserJob">Jobs<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+    						<!-- Dropdown Trigger user Events -->
+      <li><a class="dropdown-UserEvent" href="" data-activates="dropdownUserEvent">Events<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+				 			
+				 			
+							
+							<!-- <li><a href="#/user/new">Register</a></li> -->
+							
+							<!-- <li><a href="#/adminevent/list">Events list</a></li>
+							<li><a href="#/job/list">Jobs list</a></li> -->
+							<li><a href="#!"ng-click="logout()">Log Out</a></li>
+							
+				 		</ul>
+				 		
+				 		<ul class="right hide-on-med-and-down" ng-if="user.role == 'Admin'">
+				 			
+				 			<li><a href="#/profile/{{user.userid}}">Profile</a></li>
+				 			
+				 			<!-- Dropdown Trigger friend -->
+      <li><a class="dropdown-friend" href="" data-activates="dropdownFriend">Friend<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+				 			<!-- Dropdown Trigger forum -->
+      <li><a class="dropdown-button" href="" data-activates="dropdown1">Forum<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+    						<!-- Dropdown Trigger JOB -->
+      <li><a class="dropdown-job" href="" data-activates="dropdownJob">Job<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+    						<!-- Dropdown Trigger Blog -->
+      <li><a class="dropdown-blog" href="" data-activates="dropdownBlog">Blog<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+    						<!-- Dropdown Trigger Event -->
+      <li><a class="dropdown-event" href="" data-activates="dropdownEvent">Event<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+    						<!-- Dropdown Trigger User -->
+      <li><a class="dropdown-user" href="" data-activates="dropdownUser">User<i class="material-icons right">arrow_drop_down</i></a></li>
+    
+				 			<li><a href="#!"ng-click="logout()">Log Out</a></li>
+							
+							
+							
+							
+				 		</ul>
+				 		
+				</div>		<!-- End of nav wrapper -->
+				</nav>
+		</div>		<!-- End of navbar fixed -->
+		</div>		<!-- End of if auth -->
+   	</header>
+   	
+   <!--  ng-cloak  shows how to include the directive on an HTML element. -->
+   <div id="body" ng-cloak class="ng-cloak">
+   
+   
+   
+   
+   
+   
+   <div ng-view>
+
+        
+        </div>
+   
+   </div>
+   
+   <div id="footer">
+        <footer class="page-footer grey darken-3" >
+          <div class="container" ng-if="authenticated">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="blue-text text-lighten-4">footer contents available here.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="blue-text text-lighten-3" href="Asit Dash">facebook</a></li>
+                  <li><a class="blue-text text-lighten-3" href="AK">Whatsapp</a></li>
+                  <li><a class="blue-text text-lighten-3" href="asit.dash321@gmail.com">Gmail</a></li>
+                  <li><a class="blue-text text-lighten-3" href="#!">twitter</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            Copyright &copy; MAXZEN 2017
+            <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+            </div>
+          </div>
+        </footer>
+            
+   </div>
+   
+</div>
+
+
+
+
+
+ 
+
+
+</body>
+</html>

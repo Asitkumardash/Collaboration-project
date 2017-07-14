@@ -1,0 +1,85 @@
+
+<div ng-init="userCtrl.fetchUser()">
+	<div class="row">
+		<!-- <p>My profile</p> -->
+		<div class="col s12 m4">
+			<div class="card grey darken-3">
+				<div class="card-content">
+				    <span class="card-title logo chngephoto center">Change Profile Picture</span>
+				    <hr>
+				    <div class="row center-align">
+				        <img class="profile-picture" ng-src="assets/images/{{user.profile}}" alt="no pic here!" height="200px">
+				    </div>
+				    <div class="row center-align">
+				
+				        <div class="file-field input-field">
+				            <div class="btn orange darken-3">
+				                <span>File</span>
+				                <!-- Here we are going to use our custom directive -->
+				                <input type="file" file-model="userCtrl.picture">
+				            </div>
+				            <div class="file-path-wrapper">
+				                <input class="file-path validate" type="text">
+				            </div>
+				        </div>
+				        <button class="btn orange darken-3 waves-effect waves-light" ng-click="userCtrl.uploadFile()">Change Picture</button>
+				    </div>
+				</div>
+		    </div>
+		   </div>
+			<!-- End of pic -->
+			<div class="col s12 m8">
+			
+				<!-- <ul class="tabs">
+					<li class="tab col s3"><a href="#personalInfo" class="active">Personal info</a></li>
+					<li class="tab col s3"><a href="#onlineFrnds">Online Friends</a></li>
+				</ul> -->
+			
+			
+		        <div id="personalInfo" class="card-panel grey lighten-4">
+					<p class="nameprofile">{{user.fname}} {{user.lname}}</p>
+					<p class="profiletext"><span class="profiletag">Status</span> : {{user.status}}</p>
+					<p class="profiletext"><span class="profiletag">Gender</span> : {{user.gender}}</p>
+					
+					<hr>
+					<p class="profiletext"><span class="profiletag">Email</span> : {{user.email}}</p>
+					<p class="profiletext"><span class="profiletag">Phone</span> : {{user.pno}}</p>
+					<hr>
+					<p class="profiletext"><span class="profiletag">Address</span> : {{user.add1}}, {{user.add2}}, {{user.add3}}, {{user.city}}, {{user.state}}, {{user.pincode}}</p>
+					<hr>
+					
+					<p class="profiletext"><span class="profiletag">Role</span> : {{user.role}}</p>
+					
+					<a href="#/edit/profile" class="btn orange darken-3">Edit profile</a>
+				</div>
+				<!-- End of details -->
+				<div id="onlineFrnds" class="card-panel grey lighten-4">
+					<p class="onlinefrndsHeader">Online friends ({{userCtrl.onlineFriendsCount}})</p>
+					<ul>
+						
+						<li ng-repeat="singleUser in userCtrl.onlineFriendsList">
+							<a href="#/chat/{{singleUser.userid}}/{{singleUser.fname}}/{{singleUser.lname}}">
+								<!-- <img ng-src="assets/images/{{singleUser.profile}}" alt="no pic here!" height="25px">&nbsp; {{singleUser.fname}} {{singleUser.lname}}
+								 -->
+								  <div class="chip">
+								    <img ng-src="assets/images/{{singleUser.profile}}" alt="Contact Person">
+								    {{singleUser.fname}} {{singleUser.lname}}
+								  </div>
+							
+							</a>
+						</li>
+						
+					</ul>
+				
+				</div>
+				
+				
+			  </div>
+			  
+			  
+		
+	</div>
+	
+
+	
+</div>
